@@ -6,12 +6,27 @@ class Upload extends Component {
     authData = this.props
   }
 
+  callStorage(e) {
+    fetch('http://localhost:8081/api/upload/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: this.refs.input.value
+    });
+  }
+
   render() {
     return(
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            
+            <h1>Upload</h1>
+            <form>
+                <p><textarea ref='input' /></p>
+                <p><input type="button" value="Send file" onClick={this.callStorage.bind(this)} /></p>
+            </form>
           </div>
         </div>
       </main>
