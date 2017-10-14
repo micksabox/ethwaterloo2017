@@ -27,26 +27,26 @@ Reduction of Costs for Insurance-Provider-Patient Ecosystem.
 #### Privacy Preservation
 We are assuming that patients are ok with releasing their data to providers
 
-### Interest Groups Incentives
+### Interest Group Incentives
 
 **Patients**
-- Pay less co-pay
++ Pay less co-pay
 - Sacrifice privacy (give more data)
-- Revieve more accurate diagnosis
++ Revieve more accurate diagnosis for walk-in clinics, healthcare while travelling
 
 **Care Providers**
-- Less insurance premiums
++ Less insurance premiums
 - Pay more percentage of co-pay
-- Less litigation
-- More operational efficiency (less duplicated tests)
++ Less litigation costs
++ More operational efficiency (less duplicated tests)
 
 **Medical Malpractice Insurance Providers**
-- Less exposure to risk
-- Less operating costs
++ Less exposure to risk
++ Less operating costs
 
 **Patients Insurance**
-- Less risk
-- Less operating costs
++ Less risk
++ Less operating costs
 
 ## System Architecture
 
