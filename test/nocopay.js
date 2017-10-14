@@ -26,7 +26,33 @@ contract("NoCoPay", function(accounts){
 
   })
 
-  it("should add a ...", function(accounts){
-    
+  it("should assign a patient to a provider", function(){
+
+    var _instance;
+
+    var patient = accounts[1];
+    var doctor = accounts[0];
+
+    return NoCoPay.deployed().then( function(instance){
+
+      _instance = instance;
+
+      return instance.assignProvider(patient, doctor);
+
+    }).then(function(tx){
+
+      return _instance.getPatientCount( doctor );
+
+    }).then(function(count){
+
+      assert.equal( count, 1 );
+
+      return _instance.getPatientAtIndex( doctor, count - 1 );
+
+    }).then( function( patientAddress ){
+
+      assert.equal( patient, patientAddress )
+    })
+
   })
 })
