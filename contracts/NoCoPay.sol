@@ -1,6 +1,6 @@
 pragma solidity ^0.4.11;
 
-import "./BaseRegistry";
+import "./BaseRegistry.sol";
 
 contract NoCoPay is BaseRegistry {
 
@@ -13,7 +13,6 @@ contract NoCoPay is BaseRegistry {
   function addRecord(address _doctor, address _patient, string _documentHash) {
     relationship[_doctor][_patient] = _documentHash;
     }
-
 
   function getHash (address _doctor, address _patient, string _documentHash) constant returns (string) {
     return relationship[_doctor][_patient];

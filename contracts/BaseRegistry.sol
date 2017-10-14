@@ -1,6 +1,6 @@
 pragma solidity ^0.4.11;
 
-// This is the base contract that your contract Doctors extends from.
+// This is the base contract that your contract  extends from.
 contract BaseRegistry {
 
     // The owner of this registry.
@@ -16,17 +16,18 @@ contract BaseRegistry {
         uint time;
         // Keeps the index of the keys array for fast lookup
         uint keysIndex;
-        address specialty;
+        string name;
+        string specialty;
     }
 
     // This mapping keeps the records of this Registry.
-    mapping(string => Record) records;
+    mapping(address => Record) records;
 
     // Keeps the total numbers of records in this Registry.
     uint public numRecords;
 
     // Keeps a list of all keys to interate the records.
-    string[] public keys;
+    address[] public keys;
 
 
     modifier onlyOwner {
@@ -36,14 +37,15 @@ contract BaseRegistry {
 
 
 
-    // This is the function that actually insert a record.
-    function register(string key, address specialty) {
+    // This is the function that actually insert a record. 
+    function register(address key, string name, string specialty) {
         if (records[key].time == 0) {
             records[key].time = now;
             records[key].owner = msg.sender;
             records[key].keysIndex = keys.length;
             keys.length++;
             keys[keys.length - 1] = key;
+            records[key].name = name;
             records[key].specialty = specialty;
             numRecords++;
         } else {
@@ -52,15 +54,16 @@ contract BaseRegistry {
     }
 
     // Updates the values of the given record.
-    function update(string key, address specialty) {
+    function update(address key, string name, string specialty) {
         // Only the owner can update his record.
         if (records[key].owner == msg.sender) {
+            records[key].name = name;
             records[key].specialty = specialty;
         }
     }
 
     // Unregister a given record
-    function unregister(string key) {
+    function unregister(address key) {
         if (records[key].owner == msg.sender) {
             uint keysIndex = records[key].keysIndex;
             delete records[key];
@@ -72,7 +75,7 @@ contract BaseRegistry {
     }
 
     // Transfer ownership of a given record.
-    function transfer(string key, address newOwner) {
+    function transfer(address key, address newOwner) {
         if (records[key].owner == msg.sender) {
             records[key].owner = newOwner;
         } else {
@@ -81,36 +84,38 @@ contract BaseRegistry {
     }
 
     // Tells whether a given key is registered.
-    function isRegistered(string key) returns(bool) {
+    function isRegistered(address key) returns(bool) {
         return records[key].time != 0;
     }
 
-    function getRecordAtIndex(uint rindex) returns(string key, address owner, uint time, address specialty) {
+    function getRecordAtIndex(uint rindex) returns(address key, address owner, uint time, string name, string specialty) {
         Record record = records[keys[rindex]];
         key = keys[rindex];
         owner = record.owner;
         time = record.time;
+        name = record.name;
         specialty = record.specialty;
     }
 
-    function getRecord(string key) returns(address owner, uint time, address specialty) {
+    function getRecord(address key) returns(address owner, uint time, string name, string specialty) {
         Record record = records[key];
         owner = record.owner;
         time = record.time;
+        name = record.name;
         specialty = record.specialty;
     }
 
     // Returns the owner of the given record. The owner could also be get
-    // by using the function getRecord but in that case all record attributes
+    // by using the function getRecord but in that case all record attributes 
     // are returned.
-    function getOwner(string key) returns(address) {
+    function getOwner(address key) returns(address) {
         return records[key].owner;
     }
 
     // Returns the registration time of the given record. The time could also
     // be get by using the function getRecord but in that case all record attributes
     // are returned.
-    function getTime(string key) returns(uint) {
+    function getTime(address key) returns(uint) {
         return records[key].time;
     }
 
