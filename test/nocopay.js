@@ -25,4 +25,8 @@ contract("NoCoPay", function(accounts){
     })
 
   })
+
+  it("should add a ...", function(accounts){
+    
+  })
 })
