@@ -17,7 +17,10 @@ class Profile extends Component {
               <strong>Name</strong><br />
               {this.props.authData.name}
             </p>
-
+            <p>
+              <strong>Raw JSON from uPort</strong><br />
+              { JSON.stringify(this.props.authData) }
+            </p>
             <Link to="upload">Upload Files</Link>
 
           </div>
