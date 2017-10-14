@@ -5,4 +5,5 @@ module.exports = function(deployer) {
 deployer.deploy(BaseRegistry)
 deployer.deploy(NoCoPay)
 deployer.link(BaseRegistry,NoCoPay)
+
 };
