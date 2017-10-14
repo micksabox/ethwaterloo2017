@@ -10,6 +10,7 @@ import App from './App'
 import Home from './layouts/home/Home'
 import Dashboard from './layouts/dashboard/Dashboard'
 import Profile from './user/layouts/profile/Profile'
+import Upload from './user/layouts/profile/Upload'
 
 // Redux Store
 import store from './store'
@@ -23,6 +24,7 @@ ReactDOM.render((
           <IndexRoute component={Home} />
           <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
+          <Route path="upload" component={UserIsAuthenticated(Upload)}/>
         </Route>
       </Router>
     </Provider>

@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 
-class Home extends Component {
+class Upload extends Component {
+  constructor(props, { authData }) {
+    super(props)
+    authData = this.props
+  }
+
   render() {
     return(
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            <h1>Healthcare Dapp</h1>
+            
           </div>
         </div>
       </main>
@@ -14,4 +19,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Upload
