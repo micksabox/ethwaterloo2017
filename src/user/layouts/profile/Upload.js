@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class Upload extends Component {
-  constructor(props, { authData }) {
+  constructor(props) {
     super(props)
-    authData = this.props
+
+    
   }
 
   callStorage(e) {
+
     fetch('http://localhost:8081/api/upload/', {
         method: 'POST',
         headers: {
@@ -15,12 +18,11 @@ class Upload extends Component {
         },
         body: JSON.stringify({
             data: this.refs.input.value,
-            userId: this.props.authData.publicKey
+            userId: this.props.user.publicKey
         })
     }).then((response) => response.json() )
       .then((responseJson) => {
         this.props.successCallback(responseJson);
-        // console.log(responseJson);
         // this.setState({data: JSON.stringify(responseJson) });
         return responseJson;
       })
@@ -46,4 +48,8 @@ class Upload extends Component {
   }
 }
 
-export default Upload
+const mapStateToProps = state => ({
+  user: state.user.data
+})
+
+export default connect(mapStateToProps)(Upload)
