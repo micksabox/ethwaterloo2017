@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import { getDoctorCount, getDoctorAtIndex, createSignature } from '../../../util/connectors'
-
+import { getDoctorCount, getDoctorAtIndex, createSignature, uport } from '../../../util/connectors'
+var mnid = require('mnid')
 import Upload from '../profile/Upload'
 
 class Patient extends Component {
@@ -15,7 +15,8 @@ class Patient extends Component {
       numDoctors: null,
       doctors: [],
       selectedDoctor: null,
-      fileReference: null
+      fileReference: null,
+      transactionHash: null
     }
   }
 
@@ -49,7 +50,9 @@ class Patient extends Component {
 
   handleSignTransaction(){
 
-    var patientPublicKey = this.props.user.address;
+    var networkDecoded = mnid.decode( this.props.user.address )
+
+    var patientPublicKey = networkDecoded.address;
     var providerPublicKey = this.state.selectedDoctor.key;
 
     console.log( this.props.user, this.state.selectedDoctor )
@@ -61,7 +64,9 @@ class Patient extends Component {
       dataFileReference: this.state.fileReference,
     }, (result) => {
       
-      console.log(result)
+      this.setState({
+        transactionHash: result
+      })
     })
   }
 
@@ -91,6 +96,14 @@ class Patient extends Component {
         this.state.fileReference ? 
         <div>
           <button onClick={ this.handleSignTransaction.bind(this) }>Sign Transaction</button>
+        </div>
+        : null
+      }
+      {
+        this.state.transactionHash ?
+        <div>
+          <h2>Signature Created</h2>
+          <p><a target="__blank" href={`https://rinkeby.etherscan.io/tx/${this.state.transactionHash}`}>Click here</a> to view this transaction on the Ethereum blockchain.</p>
         </div>
         : null
       }
