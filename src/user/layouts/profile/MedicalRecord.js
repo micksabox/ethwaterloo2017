@@ -21,16 +21,16 @@ class MedicalRecord extends Component {
           <div className="pure-u-1-1">
             <h1>Medical Record</h1>
             <div className="table table-responsive">
-              <p><strong>Name  </strong>{ this.props.record ? this.props.record.name : '' }</p>
-              <p><strong>Height  </strong>{ this.props.record ? this.props.record.height : '' }</p>
+              <p><strong>Name: </strong>{ this.props.record ? this.props.record.name : '' }</p>
+              <p><strong>Height: </strong>{ this.props.record ? this.props.record.height : '' }</p>
 
-              <p><strong>Weight  </strong>{ this.props.record ? this.props.record.weight : '' }</p>
+              <p><strong>Weight: </strong>{ this.props.record ? this.props.record.weight : '' }</p>
               <p>
-                <strong>Allergies</strong>
+                <strong>Allergies: </strong>
                 <ul>
-                {this.props.record.allergies.length > 0 &&
+                {this.props.record &&
                    this.props.record.allergies.map((x, i) =>
-                      <li>{i}</li>
+                      <li>{x}</li>
                     )
                 }
                 </ul>
