@@ -38,7 +38,7 @@ class Upload extends Component {
         <h1>Upload Medical Record to { this.props.doctor.name }</h1>
         <form>
             {/* <button onClick={ ()=> this.setState({ record: {} }) } className="btn btn-success">Add Record</button> */}
-            <p><textarea ref='input' defaultValue={'{"name":"", "blood_type":""}'} className="form-control" /></p>
+            <p><textarea ref='input' defaultValue={'{ "name": "John Doe", "height": 185, "weight": 85, "allergies": [ "peanut", "soy" ] }'} className="form-control" /></p>
             <p><input className="btn btn-secondary" type="button" value="Send file" onClick={this.callStorage.bind(this)} /></p>
         </form>
       </div>
