@@ -17,7 +17,16 @@ class Upload extends Component {
             data: this.refs.input.value,
             userId: this.props.authData.publicKey
         })
-    });
+    }).then((response) => response.json() )
+      .then((responseJson) => {
+        this.props.successCallback(responseJson);
+        // console.log(responseJson);
+        // this.setState({data: JSON.stringify(responseJson) });
+        return responseJson;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
