@@ -25,7 +25,6 @@ export const createSignature = ({
   dataFileReference
   }, callback ) => {
 
-    console.log(patientPublicKey, providerPublicKey, dataHash, dataFileReference);
   var HealthcareContract = web3.eth.contract(ABI); 
   var healthcareInstance = HealthcareContract.at( DEPLOYED_ADDRESS );
 
@@ -40,7 +39,6 @@ export const getDoctorAtIndex = ( index, callback ) => {
   var healthcareInstance = HealthcareContract.at( DEPLOYED_ADDRESS );
   
   var doctors = healthcareInstance.getRecordAtIndex.call( index, function(e, r){
-    console.log(r)
 
     callback(r)
   } )
@@ -53,7 +51,8 @@ export const addProvider = ( options, callback ) => {
   var healthcareInstance = HealthcareContract.at( DEPLOYED_ADDRESS );
 
   healthcareInstance.register( options['address'], options['name'], options['specialty'], function(e, r){
-    console.log("register", e, r)
+    
+    callback(r)
   })
 }
 
