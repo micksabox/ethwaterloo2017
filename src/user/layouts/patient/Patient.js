@@ -55,8 +55,6 @@ class Patient extends Component {
     var patientPublicKey = networkDecoded.address;
     var providerPublicKey = this.state.selectedDoctor.key;
 
-    console.log( this.props.user, this.state.selectedDoctor )
-
     createSignature({
       patientPublicKey,
       providerPublicKey,
@@ -74,17 +72,19 @@ class Patient extends Component {
     return (
       <div>
       <p>Select Doctor</p>
+      <ul className="list-group">
       {
          this.state.doctors.map( (doctor, index) => (
-          <div key={ doctor.key }>
-            <a href="#" onClick={ this.selectDoctor.bind(this, doctor) }>{ doctor.name } - { doctor.specialty }</a>
-          </div>
+          <li className="list-group-item" key={ doctor.key }>
+            <a href="#" className="btn" onClick={ this.selectDoctor.bind(this, doctor) }>{ doctor.name } <span className="badge badge-secondary"> { doctor.specialty } </span></a>
+          </li>
         ))
       }
+      </ul>
       {
         this.state.selectedDoctor ? 
         <div>
-          <Upload successCallback={ fileReference => {
+          <Upload doctor={ this.state.selectedDoctor } selectedDoctor={ this.state.selectedDoctor } successCallback={ fileReference => {
             this.setState({
               fileReference: fileReference.fileID
             })
@@ -95,7 +95,7 @@ class Patient extends Component {
       {
         this.state.fileReference ? 
         <div>
-          <button onClick={ this.handleSignTransaction.bind(this) }>Sign Transaction</button>
+          <button className="btn btn-outline-primary" onClick={ this.handleSignTransaction.bind(this) }>Sign Transaction</button>
         </div>
         : null
       }

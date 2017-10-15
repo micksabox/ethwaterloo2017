@@ -4,6 +4,10 @@ import { connect } from 'react-redux'
 class Upload extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      record: null
+    }
   }
 
   callStorage(e) {
@@ -30,17 +34,14 @@ class Upload extends Component {
 
   render() {
     return(
-      <main className="container">
-        <div className="pure-g">
-          <div className="pure-u-1-1">
-            <h1>Upload</h1>
-            <form>
-                <p><textarea ref='input' /></p>
-                <p><input type="button" value="Send file" onClick={this.callStorage.bind(this)} /></p>
-            </form>
-          </div>
-        </div>
-      </main>
+      <div>
+        <h1>Upload Medical Record to { this.props.doctor.name }</h1>
+        <form>
+            {/* <button onClick={ ()=> this.setState({ record: {} }) } className="btn btn-success">Add Record</button> */}
+            <p><textarea ref='input' defaultValue={'{"name":"", "blood_type":""}'} className="form-control" /></p>
+            <p><input className="btn btn-secondary" type="button" value="Send file" onClick={this.callStorage.bind(this)} /></p>
+        </form>
+      </div>
     )
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MedicalRecord from '../profile/MedicalRecord'
 
 class Download extends Component {
   constructor(props, { authData }) {
@@ -38,7 +37,6 @@ class Download extends Component {
                 <p><span ref="md"></span></p>
                 <p><input type="button" value="Get Medical Record" onClick={this.downloadMR.bind(this)} /></p>
 
-                <MedicalRecord record={this.state.response} />
             </form>
           </div>
         </div>
