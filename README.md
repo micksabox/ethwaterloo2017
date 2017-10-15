@@ -63,3 +63,14 @@ Data stored will strictly be files, since these can be hashed and be transferred
 - Hash of file
 
 Together, the hash of these three produce a signature which proves that the patient provided authorization for the file to a provider
+
+### Medical Record Example JSON
+{
+    "name": "John Doe",
+    "height": 185,
+    "weight": 85,
+    "allergies": [
+        "peanut",
+        "soy"
+    ]
+}
