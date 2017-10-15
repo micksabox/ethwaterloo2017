@@ -23,7 +23,6 @@ class Upload extends Component {
     }).then((response) => response.json() )
       .then((responseJson) => {
         this.props.successCallback(responseJson);
-        // this.setState({data: JSON.stringify(responseJson) });
         return responseJson;
       })
       .catch((error) => {
