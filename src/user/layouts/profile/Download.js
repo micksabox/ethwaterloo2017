@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import MedicalRecord from '../profile/MedicalRecord'
 
 class Download extends Component {
   constructor(props, { authData }) {
@@ -8,11 +9,14 @@ class Download extends Component {
   }
 
   downloadMR(e) {
+    // TODO Convert that to fileId
     fetch('http://localhost:8081/api/download/0e881f2b3a2512525b252cb6/')
-      .then((response) => response.json() )
+    .then((response) => response.json() )
       .then((responseJson) => {
-        // console.log(responseJson);
-        this.setState({data: JSON.stringify(responseJson) });
+        // this.props.successCallback(responseJson);
+        var resp = JSON.parse(JSON.stringify(responseJson).replace(/\r?\n?/g, '').trim());
+        console.log(resp.data);
+        this.setState({response: JSON.parse(resp.data)});
         return responseJson;
       })
       .catch((error) => {
@@ -33,6 +37,8 @@ class Download extends Component {
 
                 <p><span ref="md"></span></p>
                 <p><input type="button" value="Get Medical Record" onClick={this.downloadMR.bind(this)} /></p>
+
+                <MedicalRecord record={this.state.response} />
             </form>
           </div>
         </div>

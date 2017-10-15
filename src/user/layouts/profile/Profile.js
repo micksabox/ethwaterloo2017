@@ -22,6 +22,8 @@ class Profile extends Component {
               { JSON.stringify(this.props.authData) }
             </p>
             <Link to="upload">Upload Files</Link>
+            <br />
+            <Link to="download">Download Medical Record</Link>
 
           </div>
         </div>

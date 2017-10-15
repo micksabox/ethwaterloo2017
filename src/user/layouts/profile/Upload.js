@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 class Upload extends Component {
   constructor(props) {
     super(props)
-
-    
   }
 
   callStorage(e) {
