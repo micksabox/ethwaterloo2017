@@ -1,7 +1,7 @@
 var NoCoPay = artifacts.require("./NoCoPay.sol");
 
 contract("NoCoPay", function(accounts){
-  
+
   it("should add a doctor in the registry", function(){
 
     var registry;
@@ -56,3 +56,18 @@ contract("NoCoPay", function(accounts){
 
   })
 })
+
+  // it("should check if provider hash is equal to relationship hash", function()) {
+  //   var _instance;
+  //
+  //   var patient = accounts[1];
+  //   var doctor = accounts[0];
+  //
+  //
+  //   var hash = "test"
+  //
+  //   return NoCoPay.deployed().then( function (instance) {
+  //     _instance = instance;
+  //     return instance.providerCheck(doctor, patient, )
+  //   })
+  // }

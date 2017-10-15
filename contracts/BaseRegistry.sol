@@ -37,7 +37,7 @@ contract BaseRegistry {
 
 
 
-    // This is the function that actually insert a record. 
+    // This is the function that actually insert a record.
     function register(address key, string name, string specialty) {
         if (records[key].time == 0) {
             records[key].time = now;
@@ -84,11 +84,11 @@ contract BaseRegistry {
     }
 
     // Tells whether a given key is registered.
-    function isRegistered(address key) returns(bool) {
+    function isRegistered(address key) constant returns(bool) {
         return records[key].time != 0;
     }
 
-    function getRecordAtIndex(uint rindex) returns(address key, address owner, uint time, string name, string specialty) {
+    function getRecordAtIndex(uint rindex) constant returns(address key, address owner, uint time, string name, string specialty) {
         Record record = records[keys[rindex]];
         key = keys[rindex];
         owner = record.owner;
@@ -97,7 +97,7 @@ contract BaseRegistry {
         specialty = record.specialty;
     }
 
-    function getRecord(address key) returns(address owner, uint time, string name, string specialty) {
+    function getRecord(address key) constant returns(address owner, uint time, string name, string specialty) {
         Record record = records[key];
         owner = record.owner;
         time = record.time;
@@ -106,16 +106,16 @@ contract BaseRegistry {
     }
 
     // Returns the owner of the given record. The owner could also be get
-    // by using the function getRecord but in that case all record attributes 
+    // by using the function getRecord but in that case all record attributes
     // are returned.
-    function getOwner(address key) returns(address) {
+    function getOwner(address key) constant returns(address) {
         return records[key].owner;
     }
 
     // Returns the registration time of the given record. The time could also
     // be get by using the function getRecord but in that case all record attributes
     // are returned.
-    function getTime(address key) returns(uint) {
+    function getTime(address key) constant returns(uint) {
         return records[key].time;
     }
 
