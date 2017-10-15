@@ -1,5 +1,6 @@
 const initialState = {
-  data: null
+  data: null,
+  role: null,
 }
 
 const userReducer = (state = initialState, action) => {
@@ -14,6 +15,13 @@ const userReducer = (state = initialState, action) => {
   {
     return Object.assign({}, state, {
       data: null
+    })
+  }
+
+  if( action.type === 'SET_ROLE')
+  {
+    return Object.assign({}, state, {
+      role: action.payload
     })
   }
 

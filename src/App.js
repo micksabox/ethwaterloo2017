@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { HiddenOnlyAuth, VisibleOnlyAuth } from './util/wrappers.js'
+import { connect } from 'react-redux'
 
 // UI Components
 import LoginButtonContainer from './user/ui/loginbutton/LoginButtonContainer'
@@ -17,7 +18,7 @@ class App extends Component {
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
       <span>
         <li className="pure-menu-item">
-          <Link to="/dashboard" className="pure-menu-link">Dashboard</Link>
+          <Link to="/dashboard" className="pure-menu-link">{this.props.role === 'patient' ? 'Patient' : 'Healthcare Provider' } Dashboard</Link>
         </li>
         <li className="pure-menu-item">
           <Link to="/profile" className="pure-menu-link">Profile</Link>
@@ -28,7 +29,7 @@ class App extends Component {
 
     const OnlyGuestLinks = HiddenOnlyAuth(() =>
       <span>
-        <LoginButtonContainer />
+
       </span>
     )
 
@@ -48,4 +49,8 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = state => ({
+  role: state.user.role
+})
+
+export default connect(mapStateToProps)( App )
