@@ -15,9 +15,16 @@ class Home extends Component {
       <main className="container">
         <div className="pure-g">
           <div className="pure-u-1-1">
-            <h1>Healthcare Dapp</h1>
-            <button onClick={ this.setRole.bind(this, 'patient') }>I am a Patient</button>
-            <button onClick={ this.setRole.bind(this, 'provider') }>I am a Healthcare Provider</button>
+            <h1 style={{ 'text-align':'center'}}>Build Health Identity™</h1>
+            <div className="panel panel-info">
+              <div className="row justify-content-center">
+                <button className="btn btn-lg btn-outline-primary" onClick={ this.setRole.bind(this, 'patient') }>I am a Patient</button>
+              </div>
+              <br/>
+              <div className="row justify-content-center">
+                <button className="btn btn-lg btn-outline-primary" onClick={ this.setRole.bind(this, 'provider') }>I am a Healthcare Provider</button>
+              </div>
+            </div>
           </div>
         </div>
       </main>
