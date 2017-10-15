@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import MedicalRecord from '../profile/MedicalRecord'
 
 class Download extends Component {
   constructor(props, { authData }) {
     super(props)
     authData = this.props
     this.state = {data: ''};
+    console.log(this.props);
   }
 
   downloadMR(e) {
@@ -37,6 +39,7 @@ class Download extends Component {
                 <p><span ref="md"></span></p>
                 <p><input type="button" value="Get Medical Record" onClick={this.downloadMR.bind(this)} /></p>
 
+                <MedicalRecord record={this.state.response} />
             </form>
           </div>
         </div>
