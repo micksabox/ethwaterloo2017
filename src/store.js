@@ -22,8 +22,6 @@ const store = createStore(
   )
 )
 
-persistStore(store, {
-  whitelist:['user']
-})
+persistStore(store)
 
 export default store
