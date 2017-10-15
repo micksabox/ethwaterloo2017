@@ -13,8 +13,20 @@ class Upload extends Component {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: this.refs.input.value
-    });
+        body: JSON.stringify({
+            data: this.refs.input.value,
+            userId: this.props.authData.publicKey
+        })
+    }).then((response) => response.json() )
+      .then((responseJson) => {
+        this.props.successCallback(responseJson);
+        // console.log(responseJson);
+        // this.setState({data: JSON.stringify(responseJson) });
+        return responseJson;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {

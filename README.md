@@ -5,6 +5,7 @@
 ```
 npm install -g truffle // Version 3.0.5+ required.
 npm install -g ethereumjs-testrpc
+npm install github:storj/node-libstorj --save
 ```
 Project bootstrapped with Truffle box
 https://github.com/truffle-box/react-uport-box
