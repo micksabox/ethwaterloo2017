@@ -15,6 +15,9 @@ Start developing with
 npm run start
 `
 
+You must also run the backend server located here:
+https://github.com/diofeher/healthcare-backend
+
 ## Mechanism Design
 
 As per the talks at the conference, its important to architect from a mechanism design perspective. This means identifying a few things about our dApp.
